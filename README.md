@@ -1,33 +1,62 @@
-# Site Testimonials
+=== Site Testimonials ===
+Contributors: yourname  
+Donate link: https://example.com  
+Tags: testimonials, custom-post-type, shortcode, form  
+Requires at least: 5.8  
+Tested up to: 6.5  
+Requires PHP: 7.4  
+Stable tag: 1.0.0  
+License: GPL-2.0-or-later  
+License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
-Minimalist WordPress plugin that lets visitors submit testimonials through a front-end form.  
-Entries are stored as a custom post type and appear in the admin area for easy moderation.
+== Description ==  
+**Site Testimonials** — мінімалістичний плагін, що дозволяє відвідувачам залишати відгуки через фронт-форму.  
+Кожен відгук зберігається як *Custom Post Type* (**Testimonials**) і керується в адмін-панелі.  
+Шорткоди:  
 
----
+* `[site_testimonials_form]` — форма надсилання відгуку (ім’я, email, повідомлення).  
+* `[site_testimonials]` — вивід опублікованих відгуків (параметри `count`, `order`).  
 
-## ✨ Features
+== Installation ==  
 
-* **Front-end form** – shortcode `[site_testimonials_form]`  
-* **Custom Post Type** – every testimonial is a separate post (`site_testimonial`)  
-* **Admin list columns** – author’s e-mail is shown beside the title  
-* **Display shortcode** – `[site_testimonials]` to show approved testimonials  
-* Built with pure WordPress API – no frameworks, no dependencies  
-* Fully translatable (text-domain `site-testimonials`)  
+1. Завантажте папку **`site-testimonials`** до `wp-content/plugins/`.  
+2. Увімкніть плагін через меню **Плагіни → Installed Plugins**.  
+3. Додайте шорткод `[site_testimonials_form]` на будь-яку сторінку для показу форми.  
+4. (Необов’язково) додайте шорткод `[site_testimonials]` для показу опублікованих відгуків.
 
----
+== Usage ==  
 
-## 📦 Installation
+* **Форма:**  
+  `[site_testimonials_form]`  
 
-1. Upload the folder `site-testimonials` to `/wp-content/plugins/`  
-   *(or clone the repo there).*  
-2. Activate **Site Testimonials** on the **Plugins → Installed Plugins** screen.  
-3. (Optional) Copy `assets/site-testimonials.css` into your theme and tweak styles.
+* **Вивід відгуків:**  
+  `[site_testimonials count="10" order="ASC"]`  
 
----
+| Атрибут | Тип | За замовч. | Опис |
+|---------|-----|-----------|------|
+| `count` | int | `5`       | Скільки відгуків показати |
+| `order` | enum (`ASC\|DESC`) | `DESC` | Напрямок сортування |
 
-## 🚀 Quick Start
+== Frequently Asked Questions ==  
 
-### 1. Place a submission form
+= Чи можу я автоматично публікувати відгуки без модерації? =  
+Так. У файлі плагіна в методі `handle_form_submit()` замініть `post_status` із `'pending'` на `'publish'`.
 
-```text
-[site_testimonials_form]
+= Як змінити стилі форми? =  
+Створіть файл `assets/site-testimonials.css` у папці плагіна й підключіть потрібні правила — плагін уже реєструє цей CSS.
+
+== Screenshots ==  
+
+1. Front-end форма відгуку  
+2. Список «Testimonials» в адмін-панелі з колонкою Email  
+3. Приклад виводу опублікованих відгуків на сторінці
+
+== Changelog ==  
+
+= 1.0.0 =  
+* Перша стабільна версія: CPT, форма, шорткоди, базові стилі, адмін-колонки.
+
+== Upgrade Notice ==  
+
+= 1.0.0 =  
+Початковий реліз. Просто замініть файл *site-testimonials.php*, якщо оновлюєте з бета-версії.
